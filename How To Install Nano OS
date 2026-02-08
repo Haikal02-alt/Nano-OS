@@ -1,0 +1,213 @@
+1 nano nano_os.py
+2 Paste This Command
+
+import os
+import getpass
+import random
+
+def login():
+    username = input("Login: ")
+    password = getpass.getpass("Password: ")
+    if username == "admin" and password == "1234":
+        print("Login successful!")
+        return True
+    else:
+        print("Login failed.")
+        return False
+
+# === Games ===
+
+def draw_tank(name, hp):
+    print(f"{name} Tank | HP: {hp}")
+
+def tank_battle():
+    player_hp = 10
+    enemy_hp = 10
+    print("=== Nano Tank Battle ===")
+    while player_hp > 0 and enemy_hp > 0:
+        draw_tank("Player", player_hp)
+        draw_tank("Enemy", enemy_hp)
+        action = input("Fire (f) or Defend (d)? ").lower()
+        if action == "f":
+            damage = random.randint(1, 3)
+            enemy_hp -= damage
+            print(f"You hit enemy for {damage} damage!")
+        elif action == "d":
+            print("You brace for impact!")
+        else:
+            print("Invalid action!")
+        enemy_action = random.choice(["f", "d"])
+        if enemy_action == "f":
+            damage = random.randint(1, 3)
+            if action == "d":
+                damage -= 1
+            player_hp -= max(damage, 0)
+            print(f"Enemy hits you for {damage} damage!")
+        else:
+            print("Enemy defends!")
+    if player_hp <= 0:
+        print("💥 Your tank is destroyed! Game Over.")
+    else:
+        print("🔥 Enemy tank destroyed! You win!")
+
+def gunshot_game():
+    player_hp = 5
+    enemy_hp = 5
+    bullets = 1
+    enemy_bullets = 1
+    print("=== Nano Gunshot Duel ===")
+    while player_hp > 0 and enemy_hp > 0:
+        print(f"\nPlayer HP: {player_hp} | Bullets: {bullets}")
+        print(f"Enemy HP: {enemy_hp} | Bullets: {enemy_bullets}")
+        action = input("Shoot (s), Dodge (d), Reload (r): ").lower()
+        if action == "s":
+            if bullets > 0:
+                bullets -= 1
+                damage = random.randint(1, 2)
+                enemy_hp -= damage
+                print(f"You shoot! Enemy takes {damage} damage.")
+            else:
+                print("Click! No bullets left.")
+        elif action == "d":
+            print("You dodge.")
+        elif action == "r":
+            bullets += 1
+            print("You reload.")
+        else:
+            print("Invalid action!")
+        enemy_action = random.choice(["s", "d", "r"])
+        if enemy_action == "s":
+            if enemy_bullets > 0:
+                enemy_bullets -= 1
+                damage = random.randint(1, 2)
+                if action == "d":
+                    damage = max(damage - 1, 0)
+                player_hp -= damage
+                print(f"Enemy shoots! You take {damage} damage.")
+            else:
+                print("Enemy clicks! No bullets left.")
+        elif enemy_action == "d":
+            print("Enemy dodges.")
+        elif enemy_action == "r":
+            enemy_bullets += 1
+            print("Enemy reloads.")
+    if player_hp <= 0:
+        print("💥 You were shot down! Game Over.")
+    else:
+        print("🔥 Enemy defeated! You win!")
+
+def space_fight():
+    player_hp = 8
+    enemy_hp = 8
+    print("=== Nano Space Fight ===")
+    while player_hp > 0 and enemy_hp > 0:
+        print(f"Player HP: {player_hp} | Enemy HP: {enemy_hp}")
+        action = input("Laser (l), Shield (s), Warp (w): ").lower()
+        if action == "l":
+            damage = random.randint(2, 4)
+            enemy_hp -= damage
+            print(f"You fire lasers! Enemy takes {damage} damage.")
+        elif action == "s":
+            print("You raise shields.")
+        elif action == "w":
+            print("You warp evasively.")
+        else:
+            print("Invalid action!")
+        enemy_action = random.choice(["l", "s", "w"])
+        if enemy_action == "l":
+            damage = random.randint(2, 4)
+            if action == "s":
+                damage -= 2
+            player_hp -= max(damage, 0)
+            print(f"Enemy fires lasers! You take {damage} damage.")
+        elif enemy_action == "s":
+            print("Enemy raises shields.")
+        elif enemy_action == "w":
+            print("Enemy warps evasively.")
+    if player_hp <= 0:
+        print("🚀 Your ship is destroyed! Game Over.")
+    else:
+        print("🌌 Enemy ship destroyed! Victory!")
+
+def race_car_game():
+    player_pos = 0
+    enemy_pos = 0
+    finish_line = 20
+    print("=== Nano Race Car ===")
+    while player_pos < finish_line and enemy_pos < finish_line:
+        print(f"Player position: {player_pos} | Enemy position: {enemy_pos}")
+        action = input("Accelerate (a), Brake (b), Nitro (n): ").lower()
+        if action == "a":
+            player_pos += random.randint(1, 3)
+            print("You accelerate forward!")
+        elif action == "b":
+            player_pos += 0
+            print("You brake.")
+        elif action == "n":
+            player_pos += random.randint(2, 5)
+            print("Nitro boost!")
+        else:
+            print("Invalid action!")
+        enemy_action = random.choice(["a", "b", "n"])
+        if enemy_action == "a":
+            enemy_pos += random.randint(1, 3)
+            print("Enemy accelerates.")
+        elif enemy_action == "b":
+            print("Enemy brakes.")
+        elif enemy_action == "n":
+            enemy_pos += random.randint(2, 5)
+            print("Enemy uses nitro!")
+    if player_pos >= finish_line and enemy_pos >= finish_line:
+        print("🏁 It's a tie!")
+    elif player_pos >= finish_line:
+        print("🏆 You win the race!")
+    else:
+        print("💨 Enemy wins the race!")
+
+# === Nano OS Shell ===
+
+def nano_os():
+    print("=== Nano OS ===")
+    print("Type 'help' for commands.")
+    while True:
+        command = input("nano-os> ").strip().lower()
+        if command == "help":
+            print("Available commands: help, echo, ls, clear, shutdown, reboot, exit, tankbattle, gunshot, spacefight, racecar, about")
+        elif command.startswith("echo "):
+            print(command[5:])
+        elif command == "ls":
+            files = os.listdir(".")
+            for f in files:
+                print(f)
+        elif command == "clear":
+            os.system("clear")  # use "cls" on Windows
+        elif command == "shutdown":
+            print("Shutting down system...")
+            os.system("sudo shutdown now")
+            break
+        elif command == "reboot":
+            print("Rebooting system...")
+            os.system("sudo reboot")
+            break
+        elif command == "tankbattle":
+            tank_battle()
+        elif command == "gunshot":
+            gunshot_game()
+        elif command == "spacefight":
+            space_fight()
+        elif command == "racecar":
+            race_car_game()
+        elif command == "about":
+            print("Nano OS: A playful command-line shell with mini-games and basic commands. Created for fun and learning, it simulates an OS environment with built-in entertainment.")
+        elif command == "exit":
+            print("Exiting Nano OS...")
+            break
+        else:
+            print("Unknown command:", command)
+
+if __name__ == "__main__":
+    if login():
+        nano_os()
+
+3 Ctrl X Y Enter
+4 Run With python3 nano_os.py
