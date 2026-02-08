@@ -221,7 +221,7 @@ if __name__ == "__main__":
   Then Change Ubuntu Debian etc To After You Login Run python3 nano_os.py
   Also go to sudo nano /etc/issue.net then do the same thing as Go To sudo nano /etc/issue Change Ubuntu Debian etc To After You Login Run python3 nano_os.py
 10 go to sudo nano /etc/default/grub
-  change quiet quiet splash etc to "" Example GRUB_CMDLINE_LINUX_DEFAULT=""
+  change "" quiet splash etc to quiet Example GRUB_CMDLINE_LINUX_DEFAULT="quiet"
   Change echo debian ubuntu etc to Nano OS
   Then sudo nano /etc/grub.d/10_linux
   Then change OS=GNU/Linux To OS= And Also OS="${GRUB_DISTRIBUTOR} GNU/Linux" To OS="${GRUB_DISTRIBUTOR}"
