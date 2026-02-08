@@ -1,4 +1,6 @@
-1 nano nano_os.py
+Make Sure You Are On Graphical Environment
+
+1 open terminal then run nano nano_os.py
 2 Paste This Command
 
 import os
@@ -8,7 +10,7 @@ import random
 def login():
     username = input("Login: ")
     password = getpass.getpass("Password: ")
-    if username == "admin" and password == "1234":
+    if username == "insertyourusername" and password == "insertyourpassword":
         print("Login successful!")
         return True
     else:
@@ -210,4 +212,20 @@ if __name__ == "__main__":
         nano_os()
 
 3 Ctrl X Y Enter
-4 Run With python3 nano_os.py
+4 Before you Run Remove The Linux Desktop Environment With sudo apt remove sudo dnf remove sudo pacman -Rns 
+5 run sudo nano /etc/os-release
+6 Change To PRETTY_NAME=Nano OS NAME=Nano OS And ID=nanoos And HOME_URL=
+7 Ctrl X Y Enter
+8 sudo update-initramfs -u sudo update-grub
+9 Go To sudo nano /etc/issue
+  Then Change Ubuntu Debian etc To After You Login Run python3 nano_os.py
+  Also go to sudo nano /etc/issue.net then do the same thing as Go To sudo nano /etc/issue Change Ubuntu Debian etc To After You Login Run python3 nano_os.py
+10 go to sudo nano /etc/default/grub
+  change quiet quiet splash etc to "" Example GRUB_CMDLINE_LINUX_DEFAULT=""
+  Change echo debian ubuntu etc to Nano OS
+  Then sudo nano /etc/grub.d/10_linux
+  Then change OS=GNU/Linux To OS= And Also OS="${GRUB_DISTRIBUTOR} GNU/Linux" To OS="${GRUB_DISTRIBUTOR}"
+  sudo update-grub
+
+11 Run With python3 nano_os.py
+
