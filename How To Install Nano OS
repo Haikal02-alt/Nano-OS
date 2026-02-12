@@ -10,7 +10,7 @@ import random
 def login():
     username = input("Login: ")
     password = getpass.getpass("Password: ")
-    if username == "admin" and password == "1234":
+    if username == "insertyourusername" and password == "insertyourpassword":
         print("Login successful!")
         return True
     else:
