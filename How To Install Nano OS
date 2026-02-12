@@ -174,7 +174,7 @@ def nano_os():
     while True:
         command = input("nano-os> ").strip().lower()
         if command == "help":
-            print("Available commands: help, echo, ls, clear, shutdown, reboot, exit, tankbattle, gunshot, spacefight, racecar, about , nanoc filename")
+            print("Available commands: help, echo, ls, clear, shutdown, reboot, exit, tankbattle, gunshot, spacefight, racecar, about, nanoc filename")
         elif command.startswith("echo "):
             print(command[5:])
         elif command == "ls":
