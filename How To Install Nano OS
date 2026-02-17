@@ -8,14 +8,14 @@ import getpass
 import random
 
 def login():
-    username = input("Login: ")
-    password = getpass.getpass("Password: ")
-    if username == "admin" and password == "1234":
-        print("Login successful!")
+    username = input("NanoOS Boot Loader")
+    password = getpass.getpass("0 Old Boot Record 1 Drive C 2 Drive D Selection: ")
+    if username == "skip" and password == "0 1 2":
+        print("Loading")
         return True
     else:
-        print("Login failed.")
-        return False
+        print("Loading")
+        return True
 
 # === Games ===
 
@@ -200,7 +200,7 @@ def nanocraft():
 # === Nano OS Shell ===
 
 def nano_os():
-    print("=== Nano OS ===")
+    print("=== Nano OS Public Domain Operating System ===")
     print("Type 'help' for commands.")
     while True:
         command = input("nano-os> ").strip().lower()
