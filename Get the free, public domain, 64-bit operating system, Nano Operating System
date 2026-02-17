@@ -9,7 +9,7 @@ import random
 
 def login():
     username = input("NanoOS Boot Loader (Click Enter To Continue)")
-    password = getpass.getpass("0 Old Boot Record 1 Drive C 2 Drive D Selection: ")
+    password = input("0 Old Boot Record 1 Drive C 2 Drive D Selection: ")
     if username == "skip" and password == "0 1 2":
         print("Loading")
         return True
