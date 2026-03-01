@@ -197,6 +197,308 @@ def nanocraft():
         else:
             print("Unknown action.")
 
+def hacking_tool():
+    print("=== Nano HackSim ===")
+    secret = "nano123"
+    attempts = 3
+    while attempts > 0:
+        guess = input("Enter password guess: ")
+        if guess == secret:
+            print("✅ Access Granted! You hacked the system.")
+            return
+        else:
+            attempts -= 1
+            print(f"❌ Wrong password! Attempts left: {attempts}")
+    print("💀 System locked. Hack failed.")
+
+def feed_the_dog():
+    print("=== Feed the Dog ===")
+    hunger = 5
+    while hunger > 0:
+        print(f"Dog hunger level: {hunger}")
+        action = input("Give food (f), Play (p), Ignore (i): ").lower()
+        if action == "f":
+            hunger -= 2
+            print("🐕 The dog eats happily!")
+        elif action == "p":
+            hunger -= 1
+            print("🐕 The dog plays but still feels hungry.")
+        elif action == "i":
+            hunger += 1
+            print("😢 The dog whines, hunger increases.")
+        else:
+            print("Unknown action.")
+        if hunger <= 0:
+            print("🎉 The dog is full and happy! You win!")
+            break
+        if hunger > 8:
+            print("💀 The dog ran away because it was too hungry. Game Over.")
+            break
+def chess_game():
+    print("=== Nano Chess ===")
+    board = [
+        ["r","n","b","q","k","b","n","r"],
+        ["p","p","p","p","p","p","p","p"],
+        [" "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "],
+        ["P","P","P","P","P","P","P","P"],
+        ["R","N","B","Q","K","B","N","R"]
+    ]
+
+    def print_board():
+        print("  a b c d e f g h")
+        for i, row in enumerate(board):
+            print(8-i, " ".join(row), 8-i)
+        print("  a b c d e f g h")
+
+    turn = "white"
+    while True:
+        print_board()
+        move = input(f"{turn}'s move (e.g., e2 e4 or 'exit'): ").lower()
+        if move == "exit":
+            print("Exiting Nano Chess...")
+            break
+        try:
+            src, dst = move.split()
+            sx, sy = ord(src[0]) - ord("a"), 8 - int(src[1])
+            dx, dy = ord(dst[0]) - ord("a"), 8 - int(dst[1])
+            piece = board[sy][sx]
+            if piece == " ":
+                print("No piece at source!")
+                continue
+            board[dy][dx] = piece
+            board[sy][sx] = " "
+            turn = "black" if turn == "white" else "white"
+        except Exception:
+            print("Invalid move format! Use like 'e2 e4'.")
+
+def titanium_game():
+    print("=== Titanium: Plane Shooting Game ===")
+    player_hp = 12
+    enemy_hp = 12
+
+    while player_hp > 0 and enemy_hp > 0:
+        print(f"\nPlayer HP: {player_hp} | Enemy HP: {enemy_hp}")
+        action = input("Shoot (s), Evade (e), Repair (r): ").lower()
+
+        if action == "s":
+            damage = random.randint(2, 4)
+            enemy_hp -= damage
+            print(f"💥 You fire missiles! Enemy takes {damage} damage.")
+        elif action == "e":
+            print("🌀 You perform evasive maneuvers.")
+        elif action == "r":
+            heal = random.randint(1, 3)
+            player_hp += heal
+            print(f"🔧 You repair your plane, restoring {heal} HP.")
+        else:
+            print("Invalid action!")
+
+        # Enemy turn
+        enemy_action = random.choice(["s", "e", "r"])
+        if enemy_action == "s":
+            damage = random.randint(2, 4)
+            if action == "e":
+                damage -= 2  # evasion reduces damage
+            player_hp -= max(damage, 0)
+            print(f"💥 Enemy fires! You take {damage} damage.")
+        elif enemy_action == "e":
+            print("🌀 Enemy evades your attack.")
+        elif enemy_action == "r":
+            heal = random.randint(1, 3)
+            enemy_hp += heal
+            print(f"🔧 Enemy repairs their plane, restoring {heal} HP.")
+
+    if player_hp <= 0:
+        print("🔥 Your plane was shot down! Game Over.")
+    else:
+        print("🏆 Enemy plane destroyed! You win!")
+
+def fake_robux_generator():
+    print("=== Fake Robux Generator ===")
+    robux = 0
+    while True:
+        action = input("Generate (g), Spend (s), Exit (e): ").lower()
+        if action == "g":
+            gain = random.randint(10, 100)
+            robux += gain
+            print(f"💰 You generated {gain} fake Robux! Total: {robux}")
+        elif action == "s":
+            cost = random.randint(5, 50)
+            if robux >= cost:
+                robux -= cost
+                print(f"🛒 You spent {cost} fake Robux. Remaining: {robux}")
+            else:
+                print("❌ Not enough fake Robux!")
+        elif action == "e":
+            print("Exiting Fake Robux Generator...")
+            break
+        else:
+            print("Unknown action.")
+
+def nano_graphics_demo():
+    print("=== Nano OS 16-Color Graphics Demo ===")
+    colors = [
+        (30,"Black"), (31,"Red"), (32,"Green"), (33,"Yellow"),
+        (34,"Blue"), (35,"Magenta"), (36,"Cyan"), (37,"White"),
+        (90,"Bright Black"), (91,"Bright Red"), (92,"Bright Green"),
+        (93,"Bright Yellow"), (94,"Bright Blue"), (95,"Bright Magenta"),
+        (96,"Bright Cyan"), (97,"Bright White")
+    ]
+    for code, name in colors:
+        print(f"\033[{code}m█ {name}\033[0m")
+
+def elephant_simulator():
+    elephant_ascii = r"""
+       /\  ___  /\
+      // \/   \/ \\
+     ((    O O    ))
+      \\ /     \ //
+       \/  | |  \/ 
+        |  | |  |  
+        |  | |  |  
+        |   o   |  
+        | |   | |  
+        |m|   |m|
+    """
+
+    print("=== Elephant Simulator ===")
+    print(elephant_ascii)
+    hunger = 5
+    happiness = 5
+
+    while True:
+        print(f"\nElephant Hunger: {hunger} | Happiness: {happiness}")
+        action = input("Feed (f), Play (p), Rest (r), Exit (e): ").lower()
+
+        if action == "f":
+            hunger = max(hunger - 2, 0)
+            print("🍌 You feed the elephant bananas. It looks happy!")
+        elif action == "p":
+            happiness += 2
+            hunger += 1
+            print("🎉 You play with the elephant. It trumpets loudly!")
+        elif action == "r":
+            hunger += 1
+            happiness = max(happiness - 1, 0)
+            print("💤 The elephant rests peacefully.")
+        elif action == "e":
+            print("Exiting Elephant Simulator...")
+            break
+        else:
+            print("Unknown action.")
+
+        # End conditions
+        if hunger >= 10:
+            print("💀 The elephant ran away because it was too hungry. Game Over.")
+            break
+        if happiness >= 12:
+            print("🏆 The elephant loves you! You win!")
+            break
+
+def nano_casino():
+    print("=== Nano Casino ===")
+    coins = 10
+    while coins > 0:
+        print(f"Coins: {coins}")
+        action = input("Spin (s) or Exit (e): ").lower()
+        if action == "s":
+            coins -= 1
+            slots = [random.choice(["🍒","🍋","🔔","⭐","7"]) for _ in range(3)]
+            print(" | ".join(slots))
+            if len(set(slots)) == 1:
+                win = 5
+                coins += win
+                print(f"🎉 Jackpot! You win {win} coins!")
+            elif len(set(slots)) == 2:
+                win = 2
+                coins += win
+                print(f"✨ Small win! You win {win} coins.")
+            else:
+                print("❌ No win this time.")
+        elif action == "e":
+            print("Leaving Nano Casino...")
+            break
+        else:
+            print("Unknown action.")
+    print("Game Over. No coins left!")
+
+def nano_zoo():
+    print("=== Nano Zoo ===")
+    pets = {
+        "dog": "🐕 Woof!",
+        "cat": "🐈 Meow!",
+        "elephant": "🐘 Trumpet!",
+        "lion": "🦁 Roar!"
+    }
+    while True:
+        choice = input("Choose pet (dog, cat, elephant, lion, exit): ").lower()
+        if choice in pets:
+            print(pets[choice])
+        elif choice == "exit":
+            print("Leaving Nano Zoo...")
+            break
+        else:
+            print("Unknown pet.")
+
+def nano_hackersim():
+    print("=== Nano HackerSim ===")
+    steps = ["Connecting to server...", "Bypassing firewall...", "Decrypting password...", "Access granted!"]
+    for step in steps:
+        print(step)
+        input("Press Enter to continue...")
+    print("🎉 You completed the hack simulation!")
+
+def nano_treasure_hunt():
+    print("=== Nano Treasure Hunt ===")
+    treasures = ["Gold Coin", "Silver Sword", "Magic Potion", "Ancient Map"]
+    found = []
+    while True:
+        action = input("Search (s), Inventory (i), Exit (e): ").lower()
+        if action == "s":
+            item = random.choice(treasures)
+            found.append(item)
+            print(f"🪙 You found: {item}")
+        elif action == "i":
+            print("Inventory:", found if found else "Empty")
+        elif action == "e":
+            print("Leaving Treasure Hunt...")
+            break
+        else:
+            print("Unknown action.")
+def nano_city_builder():
+    print("=== Nano City Builder ===")
+    resources = {"wood":0, "stone":0, "iron":0}
+    city = []
+    while True:
+        action = input("Mine (m), Build (b), City (c), Exit (e): ").lower()
+        if action == "m":
+            res = random.choice(list(resources.keys()))
+            resources[res] += 1
+            print(f"You gathered {res}.")
+        elif action == "b":
+            if resources["wood"] >= 2 and resources["stone"] >= 1:
+                city.append("House")
+                resources["wood"] -= 2
+                resources["stone"] -= 1
+                print("🏠 You built a house!")
+            elif resources["stone"] >= 2 and resources["iron"] >= 1:
+                city.append("Forge")
+                resources["stone"] -= 2
+                resources["iron"] -= 1
+                print("⚒️ You built a forge!")
+            else:
+                print("Not enough resources to build.")
+        elif action == "c":
+            print("City:", city if city else "Empty land")
+        elif action == "e":
+            print("Leaving City Builder...")
+            break
+        else:
+            print("Unknown action.")
+
 # === Nano OS Shell ===
 
 def nano_os():
@@ -205,7 +507,7 @@ def nano_os():
     while True:
         command = input("nano-os> ").strip().lower()
         if command == "help":
-            print("Available commands: help, echo, ls, clear, shutdown, reboot, exit, tankbattle, gunshot, spacefight, racecar, about, nanoc filename, nanocraft")
+            print("Available commands: help, echo, ls, clear, shutdown, reboot, exit, tankbattle, gunshot, spacefight, racecar, about, nanoc filename, nanocraft, hacksim, feedthedog, chess, titanium, fakerobux, graphics, elephant, casino, zoo, hackersim, treasure, citybuilder")
         elif command.startswith("echo "):
             print(command[5:])
         elif command == "ls":
@@ -242,9 +544,33 @@ def nano_os():
                 os.system(f"nano {filename}")
             else:
                 os.system("nano")
+        elif command == "hacksim":
+            hacking_tool()
         elif command == "nanocraft":
             nanocraft()
- 
+        elif command == "feedthedog":
+            feed_the_dog()
+        elif command == "chess":
+            chess_game()
+        elif command == "titanium":
+            titanium_game()
+        elif command == "fakerobux":
+            fake_robux_generator()
+        elif command == "graphics":
+             nano_graphics_demo()
+        elif command == "elephant":
+            elephant_simulator()
+        elif command == "casino":
+            nano_casino()
+        elif command == "zoo":
+            nano_zoo()
+        elif command == "hackersim":
+            nano_hackersim()
+        elif command == "treasure":
+            nano_treasure_hunt()
+        elif command == "citybuilder":
+            nano_city_builder()
+
         else:
             print("Unknown command:", command)
 
